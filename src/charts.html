@@ -47,7 +47,7 @@ canvas{max-height:340px}
 </div>
 
 <div class="stats">
-  <div class="stat"><div class="v">687</div><div class="l">永续合约币对</div></div>
+  <div class="stat"><div class="v">688</div><div class="l">永续合约币对</div></div>
   <div class="stat"><div class="v">$9.65B</div><div class="l">24h 合约交易量</div></div>
   <div class="stat"><div class="v">$1.58B</div><div class="l">24h 现货交易量</div></div>
   <div class="stat"><div class="v">0.000%</div><div class="l">Taker 手续费</div></div>
@@ -66,7 +66,7 @@ canvas{max-height:340px}
 <div class="summary">
   <h2>核心发现</h2>
   <ul>
-    <li><strong>币对数量 ≠ 交易量：</strong>MEXC（923个）币对最多，但合约交易量只有 Binance 的 1/3。<span class="kc">KCEX</span>（687个）超过 Binance 和 OKX，但流动性深度仍是短板</li>
+    <li><strong>币对数量 ≠ 交易量：</strong>MEXC（919个）币对最多，但合约交易量只有 Binance 的 1/3。<span class="kc">KCEX</span>（688个）超过 Binance 和 OKX，但流动性深度仍是短板</li>
     <li><strong>零手续费是绝对差异化：</strong><span class="kc">KCEX</span> taker 0.000% 全行业最低，高频交易者年省数千美元手续费</li>
     <li><strong>持仓量差距巨大：</strong>Binance OI $26.8B vs <span class="kc">KCEX</span> $0.695B，差距 38 倍。MEXC OI $11.5B 已接近头部水平</li>
     <li><strong>功能缺口需补齐：</strong>跟单（5/6家有）和网格（5/6家有）是 <span class="kc">KCEX</span> 最大功能缺口</li>
@@ -93,7 +93,7 @@ const yGrid={color:'rgba(0,0,0,.05)'};
 // 1 币对数量
 new Chart(document.getElementById('pairsChart'),{
   type:'bar',
-  data:{labels:L,datasets:[{data:[601,333,660,645,923,687],backgroundColor:bg(L),borderColor:bd(L),borderWidth:1.5,borderRadius:6,barPercentage:.55}]},
+  data:{labels:L,datasets:[{data:[598,334,664,648,919,688],backgroundColor:bg(L),borderColor:bd(L),borderWidth:1.5,borderRadius:6,barPercentage:.55}]},
   options:{responsive:true,plugins:{legend:{display:false},tooltip:{...tt,callbacks:{label:c=>c.parsed.y+' 个'}},datalabels:{display:true,color:ctx=>ctx.dataIndex===5?K:'#555',anchor:'end',align:'top',clamp:true,offset:4,font:{weight:ctx=>ctx.dataIndex===5?'700':'500',size:12},formatter:v=>v}}},
   scales:{y:{beginAtZero:true,grid:yGrid,max:1150},x:{grid:{display:false}}}
 });

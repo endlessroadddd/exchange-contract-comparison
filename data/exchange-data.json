@@ -12,7 +12,7 @@
     {
       "name": "Binance",
       "name_cn": "币安",
-      "perpetual_pairs": 601,
+      "perpetual_pairs": 598,
       "futures_pairs": 48,
       "volume_24h_usd": 49000000000,
       "volume_24h_btc": 613531,
@@ -42,7 +42,7 @@
     {
       "name": "OKX",
       "name_cn": "欧易",
-      "perpetual_pairs": 333,
+      "perpetual_pairs": 334,
       "futures_pairs": 22,
       "volume_24h_usd": 20400000000,
       "volume_24h_btc": 255931,
@@ -72,7 +72,7 @@
     {
       "name": "Bybit",
       "name_cn": "Bybit",
-      "perpetual_pairs": 660,
+      "perpetual_pairs": 664,
       "futures_pairs": 68,
       "volume_24h_usd": 12700000000,
       "volume_24h_btc": 159091,
@@ -102,7 +102,7 @@
     {
       "name": "Bitget",
       "name_cn": "Bitget",
-      "perpetual_pairs": 645,
+      "perpetual_pairs": 648,
       "futures_pairs": 0,
       "volume_24h_usd": 8000000000,
       "volume_24h_btc": 100401,
@@ -132,7 +132,7 @@
     {
       "name": "MEXC",
       "name_cn": "MEXC",
-      "perpetual_pairs": 923,
+      "perpetual_pairs": 919,
       "futures_pairs": 0,
       "volume_24h_usd": 15800000000,
       "volume_24h_btc": 198713,
@@ -162,7 +162,7 @@
     {
       "name": "KCEX",
       "name_cn": "KCEX",
-      "perpetual_pairs": 687,
+      "perpetual_pairs": 688,
       "futures_pairs": 0,
       "volume_24h_usd": 9650938499.8,
       "volume_24h_btc": 119735,
