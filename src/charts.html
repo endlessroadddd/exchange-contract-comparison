@@ -94,7 +94,7 @@ const yGrid={color:'rgba(0,0,0,.05)'};
 new Chart(document.getElementById('pairsChart'),{
   type:'bar',
   data:{labels:L,datasets:[{data:[601,333,660,645,923,687],backgroundColor:bg(L),borderColor:bd(L),borderWidth:1.5,borderRadius:6,barPercentage:.55}]},
-  options:{responsive:true,plugins:{legend:{display:false},tooltip:{...tt,callbacks:{label:c=>c.parsed.y+' 个'}},datalabels:{display:true,color:ctx=>ctx.dataIndex===5?K:'#555',anchor:'end',align:'top',padding:{bottom:4},font:{weight:ctx=>ctx.dataIndex===5?'700':'500',size:12},formatter:v=>v}}},
+  options:{responsive:true,plugins:{legend:{display:false},tooltip:{...tt,callbacks:{label:c=>c.parsed.y+' 个'}},datalabels:{display:true,color:ctx=>ctx.dataIndex===5?K:'#555',anchor:'end',align:'top',clamp:true,offset:4,font:{weight:ctx=>ctx.dataIndex===5?'700':'500',size:12},formatter:v=>v}}},
   scales:{y:{beginAtZero:true,grid:yGrid,max:1150},x:{grid:{display:false}}}
 });
 
@@ -102,18 +102,20 @@ new Chart(document.getElementById('pairsChart'),{
 new Chart(document.getElementById('volumeChart'),{
   type:'bar',
   data:{labels:L,datasets:[{data:[49.0,20.4,12.7,8.0,15.8,9.65],backgroundColor:bg(L),borderColor:bd(L),borderWidth:1.5,borderRadius:6,barPercentage:.55}]},
-  options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},tooltip:{...tt,callbacks:{label:c=>'$'+c.parsed.x+'B'}},datalabels:{display:true,color:ctx=>ctx.dataIndex===5?K:'#555',anchor:'end',align:'right',padding:{left:6},font:{weight:ctx=>ctx.dataIndex===5?'700':'500',size:12},formatter:v=>'$'+v+'B'}}},
+  options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},tooltip:{...tt,callbacks:{label:c=>'$'+c.parsed.x+'B'}},datalabels:{display:true,color:ctx=>ctx.dataIndex===5?K:'#555',anchor:'end',align:'right',clamp:true,offset:6,font:{weight:ctx=>ctx.dataIndex===5?'700':'500',size:12},formatter:v=>'$'+v+'B'}}},
   scales:{x:{beginAtZero:true,grid:yGrid,max:65,ticks:{callback:v=>'$'+v+'B'}},y:{grid:{display:false}}}
 });
 
-// 3 手续费 - 分开为两组独立的简单柱状图
+// 3 手续费 - 分组柱状图，每组 dataset 独立 datalabels 配置
 new Chart(document.getElementById('feeChart'),{
   type:'bar',
   data:{labels:L,datasets:[
-    {label:'Taker',data:[.050,.050,.055,.060,.030,.000],backgroundColor:L.map((_,i)=>i===5?K:'rgba(99,102,241,.35)'),borderColor:L.map((_,i)=>i===5?K:'rgba(99,102,241,.6)'),borderWidth:1.5,borderRadius:6,barPercentage:.7,categoryPercentage:.7},
-    {label:'Maker',data:[.020,.020,.020,.020,.000,.000],backgroundColor:L.map((_,i)=>i===5?'#ff8c5a':'rgba(0,212,170,.25)'),borderColor:L.map((_,i)=>i===5?'#ff8c5a':'rgba(0,212,170,.5)'),borderWidth:1.5,borderRadius:6,barPercentage:.7,categoryPercentage:.7}
+    {label:'Taker',data:[.050,.050,.055,.060,.030,.000],backgroundColor:L.map((_,i)=>i===5?K:'rgba(99,102,241,.35)'),borderColor:L.map((_,i)=>i===5?K:'rgba(99,102,241,.6)'),borderWidth:1.5,borderRadius:6,barPercentage:.7,categoryPercentage:.7,
+      datalabels:{display:true,color:ctx=>ctx.dataIndex===5?K:'#555',anchor:'end',align:'top',offset:6,clamp:true,font:{weight:ctx=>ctx.dataIndex===5?'700':'500',size:10},formatter:v=>(v*100).toFixed(1)+'%'}},
+    {label:'Maker',data:[.020,.020,.020,.020,.000,.000],backgroundColor:L.map((_,i)=>i===5?'#ff8c5a':'rgba(0,212,170,.25)'),borderColor:L.map((_,i)=>i===5?'#ff8c5a':'rgba(0,212,170,.5)'),borderWidth:1.5,borderRadius:6,barPercentage:.7,categoryPercentage:.7,
+      datalabels:{display:true,color:ctx=>ctx.dataIndex===5?'#ff8c5a':'#555',anchor:'end',align:'top',offset:6,clamp:true,font:{weight:ctx=>ctx.dataIndex===5?'700':'500',size:10},formatter:v=>(v*100).toFixed(1)+'%'}}
   ]},
-  options:{responsive:true,plugins:{legend:{position:'top',labels:{boxWidth:12}},tooltip:{...tt,callbacks:{label:c=>c.dataset.label+': '+(c.parsed.y*100).toFixed(2)+'%'}},datalabels:{display:true,color:ctx=>ctx.datasetIndex===0&&ctx.dataIndex===5?K:(ctx.datasetIndex===1&&ctx.dataIndex===5?'#ff8c5a':'#555'),anchor:'end',align:'top',padding:{bottom:4},font:{weight:ctx=>(ctx.dataIndex===5)?'700':'500',size:10},formatter:v=>(v*100).toFixed(1)+'%'}}},
+  options:{responsive:true,plugins:{legend:{position:'top',labels:{boxWidth:12}},tooltip:{...tt,callbacks:{label:c=>c.dataset.label+': '+(c.parsed.y*100).toFixed(2)+'%'}},datalabels:{display:false}},
   scales:{y:{beginAtZero:true,grid:yGrid,max:.12,ticks:{callback:v=>(v*100).toFixed(1)+'%'}},x:{grid:{display:false}}}
 });
 
@@ -121,7 +123,7 @@ new Chart(document.getElementById('feeChart'),{
 new Chart(document.getElementById('leverageChart'),{
   type:'bar',
   data:{labels:L,datasets:[{data:[125,125,100,125,200,100],backgroundColor:bg(L),borderColor:bd(L),borderWidth:1.5,borderRadius:6,barPercentage:.55}]},
-  options:{responsive:true,plugins:{legend:{display:false},tooltip:{...tt,callbacks:{label:c=>c.parsed.y+'x'}},datalabels:{display:true,color:ctx=>ctx.dataIndex===5?K:'#555',anchor:'end',align:'top',padding:{bottom:4},font:{weight:ctx=>ctx.dataIndex===5?'700':'500',size:12},formatter:v=>v+'x'}}},
+  options:{responsive:true,plugins:{legend:{display:false},tooltip:{...tt,callbacks:{label:c=>c.parsed.y+'x'}},datalabels:{display:true,color:ctx=>ctx.dataIndex===5?K:'#555',anchor:'end',align:'top',clamp:true,offset:4,font:{weight:ctx=>ctx.dataIndex===5?'700':'500',size:12},formatter:v=>v+'x'}}},
   scales:{y:{beginAtZero:true,grid:yGrid,max:320,ticks:{callback:v=>v+'x'}},x:{grid:{display:false}}}
 });
 
@@ -147,7 +149,7 @@ new Chart(document.getElementById('radarChart'),{
 new Chart(document.getElementById('oiChart'),{
   type:'bar',
   data:{labels:L,datasets:[{data:[26.8,8.1,12.1,8.0,11.52,0.695],backgroundColor:L.map((_,i)=>i===5?K:'rgba(99,102,241,.2)'),borderColor:L.map((_,i)=>i===5?K:'rgba(99,102,241,.45)'),borderWidth:1.5,borderRadius:6,barPercentage:.5}]},
-  options:{responsive:true,plugins:{legend:{display:false},tooltip:{...tt,callbacks:{label:c=>'$'+c.parsed.y+'B'}},datalabels:{display:true,color:ctx=>ctx.dataIndex===5?K:'#555',anchor:'end',align:'top',padding:{bottom:4},font:{weight:ctx=>ctx.dataIndex===5?'700':'500',size:12},formatter:v=>'$'+v+'B'}}},
+  options:{responsive:true,plugins:{legend:{display:false},tooltip:{...tt,callbacks:{label:c=>'$'+c.parsed.y+'B'}},datalabels:{display:true,color:ctx=>ctx.dataIndex===5?K:'#555',anchor:'end',align:'top',clamp:true,offset:4,font:{weight:ctx=>ctx.dataIndex===5?'700':'500',size:12},formatter:v=>'$'+v+'B'}}},
   scales:{y:{beginAtZero:true,grid:yGrid,max:35,ticks:{callback:v=>'$'+v+'B'}},x:{grid:{display:false}}}
 });
 </script>
