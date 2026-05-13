@@ -116,7 +116,7 @@ new Chart(document.getElementById('feeChart'),{
       datalabels:{display:true,color:ctx=>ctx.dataIndex===5?'#ff8c5a':'#555',anchor:'end',align:'top',offset:6,clamp:true,font:{weight:ctx=>ctx.dataIndex===5?'700':'500',size:10},formatter:v=>(v*100).toFixed(1)+'%'}}
   ]},
   options:{responsive:true,plugins:{legend:{position:'top',labels:{boxWidth:12}},tooltip:{...tt,callbacks:{label:c=>c.dataset.label+': '+(c.parsed.y*100).toFixed(2)+'%'}},datalabels:{display:false}},
-  scales:{y:{beginAtZero:true,grid:yGrid,max:.12,ticks:{callback:v=>(v*100).toFixed(1)+'%'}},x:{grid:{display:false}}}
+  scales:{y:{beginAtZero:true,grid:yGrid,max:.12,ticks:{callback:v=>(v*100).toFixed(1)+'%'}},x:{grid:{display:false}}}}
 });
 
 // 4 杠杆
