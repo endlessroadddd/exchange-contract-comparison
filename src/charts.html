@@ -114,7 +114,7 @@ new Chart(document.getElementById('feeChart'),{
     {label:'Maker',data:[.020,.020,.020,.020,.000,.000],backgroundColor:L.map((_,i)=>i===5?'#ff8c5a':'rgba(0,212,170,.25)'),borderColor:L.map((_,i)=>i===5?'#ff8c5a':'rgba(0,212,170,.5)'),borderWidth:1.5,borderRadius:6,barPercentage:.7,categoryPercentage:.7}
   ]},
   options:{responsive:true,plugins:{legend:{position:'top',labels:{boxWidth:12}},tooltip:{...tt,callbacks:{label:c=>c.dataset.label+': '+(c.parsed.y*100).toFixed(2)+'%'}},datalabels:{display:true,color:ctx=>ctx.datasetIndex===0&&ctx.dataIndex===5?K:(ctx.datasetIndex===1&&ctx.dataIndex===5?'#ff8c5a':'#555'),anchor:'end',align:'top',padding:{bottom:4},font:{weight:ctx=>(ctx.dataIndex===5)?'700':'500',size:10},formatter:v=>(v*100).toFixed(1)+'%'}}},
-  scales:{y:{beginAtZero:true,grid:yGrid,max:.10,ticks:{callback:v=>(v*100).toFixed(1)+'%'}},x:{grid:{display:false}}}
+  scales:{y:{beginAtZero:true,grid:yGrid,max:.12,ticks:{callback:v=>(v*100).toFixed(1)+'%'}},x:{grid:{display:false}}}
 });
 
 // 4 杠杆
@@ -122,7 +122,7 @@ new Chart(document.getElementById('leverageChart'),{
   type:'bar',
   data:{labels:L,datasets:[{data:[125,125,100,125,200,100],backgroundColor:bg(L),borderColor:bd(L),borderWidth:1.5,borderRadius:6,barPercentage:.55}]},
   options:{responsive:true,plugins:{legend:{display:false},tooltip:{...tt,callbacks:{label:c=>c.parsed.y+'x'}},datalabels:{display:true,color:ctx=>ctx.dataIndex===5?K:'#555',anchor:'end',align:'top',padding:{bottom:4},font:{weight:ctx=>ctx.dataIndex===5?'700':'500',size:12},formatter:v=>v+'x'}}},
-  scales:{y:{beginAtZero:true,grid:yGrid,max:280,ticks:{callback:v=>v+'x'}},x:{grid:{display:false}}}
+  scales:{y:{beginAtZero:true,grid:yGrid,max:320,ticks:{callback:v=>v+'x'}},x:{grid:{display:false}}}
 });
 
 // 5 市场份额
