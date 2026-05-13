@@ -8,27 +8,26 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--kccx:#FF6B35;--bg:#0a0a14;--card:#12121f;--border:#1e1e35;--text:#c8c8d8;--dim:#6b6b80;--bright:#eeeef4;--r:14px}
+:root{--kccx:#FF6B35;--bg:#f5f5f7;--card:#fff;--border:#e5e5ea;--text:#333;--dim:#888;--bright:#111;--r:14px}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter','Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:48px 24px 60px;background-image:radial-gradient(ellipse 800px 400px at 20% 10%,rgba(255,107,53,.06),transparent),radial-gradient(ellipse 600px 300px at 80% 80%,rgba(99,102,241,.04),transparent)}
+body{font-family:'Inter','Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:48px 24px 60px}
 .header{text-align:center;margin-bottom:48px}
 .header h1{font-size:32px;font-weight:800;color:var(--bright);letter-spacing:-.5px;margin-bottom:6px}
 .header .kc{color:var(--kccx)}
-.badge{display:inline-block;background:rgba(255,107,53,.12);color:var(--kccx);padding:3px 14px;border-radius:20px;font-size:12px;font-weight:600;letter-spacing:.5px;margin-left:10px;vertical-align:middle}
+.badge{display:inline-block;background:rgba(255,107,53,.1);color:var(--kccx);padding:3px 14px;border-radius:20px;font-size:12px;font-weight:600;letter-spacing:.5px;margin-left:10px;vertical-align:middle}
 .header .sub{color:var(--dim);font-size:13px;margin-top:12px}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1200px;margin:0 auto 24px}
-.stat{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px;text-align:center}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.04)}
 .stat .v{font-size:26px;font-weight:800;color:var(--kccx);margin-bottom:4px}
 .stat .l{font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:.8px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1200px;margin:0 auto}
-.card{background:var(--card);border-radius:var(--r);padding:28px;border:1px solid var(--border);transition:border-color .2s,box-shadow .2s;position:relative;overflow:hidden}
-.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--border),transparent);opacity:.5}
-.card:hover{border-color:#2a2a50;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.card{background:var(--card);border-radius:var(--r);padding:28px;border:1px solid var(--border);transition:box-shadow .2s;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
 .card-full{grid-column:1/-1}
 .card h2{font-size:14px;font-weight:600;color:var(--dim);margin-bottom:20px;text-transform:uppercase;letter-spacing:.8px}
 .card h2 .u{color:var(--kccx);font-weight:500;text-transform:none;letter-spacing:0}
 canvas{max-height:340px}
-.summary{max-width:1200px;margin:32px auto 0;background:var(--card);border-radius:var(--r);padding:32px;border:1px solid var(--border)}
+.summary{max-width:1200px;margin:32px auto 0;background:var(--card);border-radius:var(--r);padding:32px;border:1px solid var(--border);box-shadow:0 1px 3px rgba(0,0,0,.04)}
 .summary h2{font-size:18px;font-weight:700;color:var(--bright);margin-bottom:24px;display:flex;align-items:center;gap:8px}
 .summary h2::before{content:'';display:inline-block;width:4px;height:20px;background:var(--kccx);border-radius:2px}
 .summary ul{list-style:none;padding:0}
@@ -75,16 +74,17 @@ canvas{max-height:340px}
 </div>
 
 <script>
-const K='#FF6B35',dim='rgba(255,255,255,.08)',dimB='rgba(255,255,255,.18)';
+const K='#FF6B35';
+const dim='rgba(0,0,0,.06)';const dimB='rgba(0,0,0,.12)';
 const labels=['Binance','OKX','Bybit','Bitget','MEXC','KCEX'];
 const colors=['#F0B90B','#6366f1','#F7A600','#00F0E0','#00B897',K];
 function bg(a){return a.map((_,i)=>i===5?K:dim)}
 function bd(a){return a.map((_,i)=>i===5?K:dimB)}
-Chart.defaults.color='#8888a0';Chart.defaults.borderColor='rgba(255,255,255,.04)';
+Chart.defaults.color='#888';Chart.defaults.borderColor='rgba(0,0,0,.06)';
 Chart.defaults.font.family="'Inter','Noto Sans SC',sans-serif";Chart.defaults.font.size=12;
 Chart.defaults.plugins.legend.labels.usePointStyle=true;Chart.defaults.plugins.legend.labels.pointStyleWidth=10;
-const tt={backgroundColor:'#1a1a30',borderColor:'#2a2a50',borderWidth:1};
-const yGrid={color:'rgba(255,255,255,.03)'};
+const tt={backgroundColor:'#fff',borderColor:'#e5e5ea',borderWidth:1,titleColor:'#333',bodyColor:'#555'};
+const yGrid={color:'rgba(0,0,0,.05)'};
 
 // 1 币对
 new Chart(document.getElementById('pairsChart'),{type:'bar',data:{labels,datasets:[{data:[601,333,660,645,923,687],backgroundColor:bg(labels),borderColor:bd(labels),borderWidth:1.5,borderRadius:6,barPercentage:.55}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{...tt,callbacks:{label:c=>c.parsed.y+' 个'}}},scales:{y:{beginAtZero:true,grid:yGrid},x:{grid:{display:false}}}}});
@@ -102,17 +102,17 @@ new Chart(document.getElementById('feeChart'),{type:'bar',data:{labels,datasets:
 new Chart(document.getElementById('leverageChart'),{type:'bar',data:{labels,datasets:[{data:[125,125,100,125,200,100],backgroundColor:bg(labels),borderColor:bd(labels),borderWidth:1.5,borderRadius:6,barPercentage:.55}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{...tt,callbacks:{label:c=>c.parsed.y+'x'}}},scales:{y:{beginAtZero:true,grid:yGrid,ticks:{callback:v=>v+'x'}},x:{grid:{display:false}}}}});
 
 // 5 市场份额
-new Chart(document.getElementById('marketShareChart'),{type:'doughnut',data:{labels,datasets:[{data:[49.0,20.4,12.7,8.0,15.8,9.65],backgroundColor:colors.map((c,i)=>i===5?c:c+'66'),borderColor:'#12121f',borderWidth:3,hoverOffset:12}]},options:{responsive:true,cutout:'58%',plugins:{legend:{position:'right',labels:{padding:14,font:{size:12}}},tooltip:{...tt,callbacks:{label:c=>{const t=c.dataset.data.reduce((a,b)=>a+b,0);return c.label+': $'+c.parsed+'B ('+(c.parsed/t*100).toFixed(1)+'%)'}}}}}});
+new Chart(document.getElementById('marketShareChart'),{type:'doughnut',data:{labels,datasets:[{data:[49.0,20.4,12.7,8.0,15.8,9.65],backgroundColor:colors.map((c,i)=>i===5?c:c+'88'),borderColor:'#fff',borderWidth:3,hoverOffset:12}]},options:{responsive:true,cutout:'58%',plugins:{legend:{position:'right',labels:{padding:14,font:{size:12}}},tooltip:{...tt,callbacks:{label:c=>{const t=c.dataset.data.reduce((a,b)=>a+b,0);return c.label+': $'+c.parsed+'B ('+(c.parsed/t*100).toFixed(1)+'%)'}}}}}});
 
 // 6 雷达
 new Chart(document.getElementById('radarChart'),{type:'radar',data:{labels:['币对覆盖','交易量','费率竞争力','杠杆','功能丰富度','流动性深度','品牌信任'],datasets:[
-  {label:'KCEX',data:[85,38,100,50,45,25,25],borderColor:K,backgroundColor:'rgba(255,107,53,.15)',borderWidth:2,pointBackgroundColor:K,pointRadius:4,pointHoverRadius:6},
-  {label:'Binance',data:[70,100,30,75,100,100,95],borderColor:'#F0B90B',backgroundColor:'rgba(240,185,11,.08)',borderWidth:1.5,pointBackgroundColor:'#F0B90B',pointRadius:3},
-  {label:'MEXC',data:[95,55,80,100,75,50,40],borderColor:'#00B897',backgroundColor:'rgba(0,184,151,.08)',borderWidth:1.5,pointBackgroundColor:'#00B897',pointRadius:3}
-]},options:{responsive:true,scales:{r:{beginAtZero:true,max:100,ticks:{display:false,stepSize:25},grid:{color:'rgba(255,255,255,.06)'},pointLabels:{color:'#8888a0',font:{size:11}},angleLines:{color:'rgba(255,255,255,.06)'}}},plugins:{legend:{position:'top'}}}});
+  {label:'KCEX',data:[85,38,100,50,45,25,25],borderColor:K,backgroundColor:'rgba(255,107,53,.12)',borderWidth:2.5,pointBackgroundColor:K,pointRadius:4,pointHoverRadius:6},
+  {label:'Binance',data:[70,100,30,75,100,100,95],borderColor:'#F0B90B',backgroundColor:'rgba(240,185,11,.06)',borderWidth:1.5,pointBackgroundColor:'#F0B90B',pointRadius:3},
+  {label:'MEXC',data:[95,55,80,100,75,50,40],borderColor:'#00B897',backgroundColor:'rgba(0,184,151,.06)',borderWidth:1.5,pointBackgroundColor:'#00B897',pointRadius:3}
+]},options:{responsive:true,scales:{r:{beginAtZero:true,max:100,ticks:{display:false,stepSize:25},grid:{color:'rgba(0,0,0,.06)'},pointLabels:{color:'#888',font:{size:11}},angleLines:{color:'rgba(0,0,0,.06)'}}},plugins:{legend:{position:'top'}}}});
 
-// 7 持仓量 - 使用精确数据
-new Chart(document.getElementById('oiChart'),{type:'bar',data:{labels,datasets:[{label:'OI',data:[26.8,8.1,12.1,8.0,11.52,0.695],backgroundColor:labels.map((_,i)=>i===5?K:'rgba(99,102,241,.25)'),borderColor:labels.map((_,i)=>i===5?K:'rgba(99,102,241,.5)'),borderWidth:1.5,borderRadius:6,barPercentage:.5}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{...tt,callbacks:{label:c=>'$'+c.parsed.y+'B'}}},scales:{y:{beginAtZero:true,grid:yGrid,ticks:{callback:v=>'$'+v+'B'}},x:{grid:{display:false}}}}});
+// 7 持仓量
+new Chart(document.getElementById('oiChart'),{type:'bar',data:{labels,datasets:[{label:'OI',data:[26.8,8.1,12.1,8.0,11.52,0.695],backgroundColor:labels.map((_,i)=>i===5?K:'rgba(99,102,241,.2)'),borderColor:labels.map((_,i)=>i===5?K:'rgba(99,102,241,.45)'),borderWidth:1.5,borderRadius:6,barPercentage:.5}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{...tt,callbacks:{label:c=>'$'+c.parsed.y+'B'}}},scales:{y:{beginAtZero:true,grid:yGrid,ticks:{callback:v=>'$'+v+'B'}},x:{grid:{display:false}}}}});
 </script>
 </body>
 </html>
